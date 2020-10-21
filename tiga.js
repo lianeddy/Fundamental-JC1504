@@ -76,17 +76,27 @@
 // }
 
 // Switch Case
-var job = "guru";
-switch (job) {
-  case "dokter":
-    console.log("rumah sakit");
-    break;
-  case "polisi":
-    console.log("ninuninu");
-    break;
-  case "guru":
-    console.log("sekolah");
-    break;
-  default:
-    console.log("beda");
+// var job = "guru";
+// switch (job) {
+//   case "dokter":
+//     console.log("rumah sakit");
+//     break;
+//   case "polisi":
+//     console.log("ninuninu");
+//     break;
+//   case "guru":
+//     console.log("sekolah");
+//     break;
+//   default:
+//     console.log("beda");
+// }
+
+var x = 10;
+if (x > 5) {
+  console.log("lebih besar dari 5");
+} else if (x < 5) {
+} else {
+}
+if (x > 9) {
+  console.log("lebih besat dari 9");
 }

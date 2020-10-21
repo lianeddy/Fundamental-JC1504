@@ -1,0 +1,83 @@
+<script>
+    var apple, grape, orange
+
+var priceApple = 10000
+var priceGrape = 15000
+var priceOrange = 20000
+
+var stockApple = 5
+var stockGrape = 7
+var stockOrange = 8
+
+// Meminta input jumlah quantity
+apple = parseInt(prompt('Masukkan jumlah Apel \nStock Apel: ' + stockApple))
+// Memeriksa apakan inputan user melebihi stock yang ada
+if(apple > stockApple){
+    // Infokan kepada user jika ada kesalahan
+    alert('Kesalahan dalam input, stock Apel ' + ' = ' + stockApple)
+    // Jika terjadi kesalahan input, maka stock akan di set menjadi nol
+    apple = null
+}
+// Meminta input jumlah quantity
+grape = parseInt(prompt('Masukkan jumlah Anggur\nStock Anggur: ' + stockGrape))
+// Memeriksa apakan inputan user melebihi stock yang ada
+if(grape > stockGrape){
+    // Infokan kepada user jika ada kesalahan
+    alert('Kesalahan dalam input, stock Anggur ' + ' = ' + stockGrape)
+    // Jika terjadi kesalahan input, maka stock akan di set menjadi nol
+    grape = null
+}
+// Meminta input jumlah quantity
+orange = parseInt(prompt('Masukkan jumlah Jeruk \nStock Orange: ' + stockOrange))
+// Memeriksa apakan inputan user melebihi stock yang ada
+if(orange > stockOrange){
+    // Infokan kepada user jika ada kesalahan
+    alert('Kesalahan dalam input, stock Jeruk ' + ' = ' + stockOrange)
+    // Jika terjadi kesalahan input, maka stock akan di set menjadi nol
+    orange = null
+}
+// Memeriksa apakalah paling tidak ada satu yang mengalami kesalahan input
+if(apple === null || grape === null || orange === null){
+    // Infokan kepada user bahwa transaksi dibatalkan karena ada kesalahan input sebelumnya
+    alert ("Transaksi dibatalkan, salah satu atau lebih mengalami kesalahan input")
+} 
+else if (apple == 0 && grape == 0 && orange == 0){
+    alert("Mohon input kuantitas barang di prompt yang tersedia")
+}  
+else {
+    // Hitung total biaya dari setiap buah yang dibeli
+    var totalApple = apple * priceApple
+    var totalGrape = grape * priceGrape
+    var totalOrange = orange * priceOrange
+    // Hitung total biaya dari keseluruhan belanjaan buah
+    var totalPrice = totalApple + totalGrape + totalOrange
+    // Infokan kepada user detail uang yang harus dibayar
+    alert(
+        'Detail Belanja \n\n' +
+        'Apple : ' + apple + ' x ' + priceApple + ' = ' + totalApple + '\n' +
+        'Grape : ' + grape + ' x ' + priceGrape + ' = ' + totalGrape + '\n' +
+        'Orange : ' + orange + ' x ' + priceOrange + ' = ' + totalOrange + '\n\n'+
+        'Total : ' + totalPrice
+    )
+    // Meminta input user untuk uang yang harus dibayar
+    var money = prompt('Masukkan jumlah uang \nTotal Biaya= Rp.' + totalPrice)
+    // Hitung kemungkinan selisih antara uang dari user dengan total yang harus dibayar
+    var margin = money - totalPrice
+    // Jika uang yang diberikan kurang dari seharusnya
+    if(money < totalPrice){
+        alert('Transaksi dibatalkan, Uang yang Anda masukkan kurang ' + margin)
+
+        // Jika uang yang diberikan lebih dari seharusnya
+    } else if(money > totalPrice){        
+
+        alert(
+            'Terimakasih \n\n' +
+            'Uang kembali untuk Anda : ' + margin
+        )
+
+        // Jika uang yang diberikan memiliki jumlah yang pas dari seharusnya
+    } else {
+        alert('Terimakasih !')
+    }
+}
+</script>
