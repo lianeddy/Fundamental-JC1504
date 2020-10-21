@@ -1,0 +1,30 @@
+<script>
+    var apple, grape, orange; // Simpan data kuantitas
+
+    var priceApple = 10000
+    var priceGrape = 15000
+    var priceOrange = 20000
+
+    apple = prompt('Masukkan jumlah Apel Rp.10000') // Keluarin pop up di browser
+    grape = prompt('Masukkan jumlah Anggur Rp.15000')
+    orange = prompt('Masukkan jumlah jeruk Rp.20000')
+
+    // Math.pow(1,2); 
+    // Math.pow(3,2); => 3^2 = 9
+    // Math.pow(2,2); => 2^2 = 4
+
+    var totalApple = apple * priceApple // Harga total untuk setiap buah
+    var totalGrape = grape * priceGrape
+    var totalOrange = orange * priceOrange
+
+    var totalPrice = totalApple + totalGrape + totalOrange
+    var pajak = totalPrice * 0.05;
+    
+    alert(
+        'Detail Belanja \n\n' +
+        'Apple : ' + apple + ' x ' + priceApple + ' = ' + totalApple + '\n' +
+        'Grape : ' + grape + ' x ' + priceGrape + ' = ' + totalGrape + '\n' +
+        'Orange : ' + orange + ' x ' + priceOrange + ' = ' + totalOrange + '\n\n'+
+        'Total : ' + totalPrice + ' + 5% Tax ' + pajak + ' = Rp.' + (totalPrice+pajak)
+    )
+</script>

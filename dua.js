@@ -88,7 +88,7 @@
 // console.log(Math.ceil(4.4)); // bulat ke atas
 
 // Date Object
-// var date = new Date("Tue, 20 Oct 2020 GMT -0700").toUTCString();
+// var date = new Date();
 // date.
 // console.log(date);
 // console.log(date.getFullYear());
