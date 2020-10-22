@@ -1,83 +1,74 @@
 <script>
-    var apple, grape, orange
+    // Minta kuantitas 3 buah
+    // Kalkulasi total harga = harga * kuantitas
+    // Stock Buah
+    // Apabila salah satu buah stock nya kurang maka transaksi dibatalkan
 
-var priceApple = 10000
-var priceGrape = 15000
-var priceOrange = 20000
+    var qtyApel, qtyGrape, qtyOrange; // minta dari user
+    var stockApel, stockGrape, stockOrange;
 
-var stockApple = 5
-var stockGrape = 7
-var stockOrange = 8
+    var hargaApel = 10000;
+    var hargaGrape = 15000;
+    var hargaOrange = 20000;
 
-// Meminta input jumlah quantity
-apple = parseInt(prompt('Masukkan jumlah Apel \nStock Apel: ' + stockApple))
-// Memeriksa apakan inputan user melebihi stock yang ada
-if(apple > stockApple){
-    // Infokan kepada user jika ada kesalahan
-    alert('Kesalahan dalam input, stock Apel ' + ' = ' + stockApple)
-    // Jika terjadi kesalahan input, maka stock akan di set menjadi nol
-    apple = null
-}
-// Meminta input jumlah quantity
-grape = parseInt(prompt('Masukkan jumlah Anggur\nStock Anggur: ' + stockGrape))
-// Memeriksa apakan inputan user melebihi stock yang ada
-if(grape > stockGrape){
-    // Infokan kepada user jika ada kesalahan
-    alert('Kesalahan dalam input, stock Anggur ' + ' = ' + stockGrape)
-    // Jika terjadi kesalahan input, maka stock akan di set menjadi nol
-    grape = null
-}
-// Meminta input jumlah quantity
-orange = parseInt(prompt('Masukkan jumlah Jeruk \nStock Orange: ' + stockOrange))
-// Memeriksa apakan inputan user melebihi stock yang ada
-if(orange > stockOrange){
-    // Infokan kepada user jika ada kesalahan
-    alert('Kesalahan dalam input, stock Jeruk ' + ' = ' + stockOrange)
-    // Jika terjadi kesalahan input, maka stock akan di set menjadi nol
-    orange = null
-}
-// Memeriksa apakalah paling tidak ada satu yang mengalami kesalahan input
-if(apple === null || grape === null || orange === null){
-    // Infokan kepada user bahwa transaksi dibatalkan karena ada kesalahan input sebelumnya
-    alert ("Transaksi dibatalkan, salah satu atau lebih mengalami kesalahan input")
-} 
-else if (apple == 0 && grape == 0 && orange == 0){
-    alert("Mohon input kuantitas barang di prompt yang tersedia")
-}  
-else {
-    // Hitung total biaya dari setiap buah yang dibeli
-    var totalApple = apple * priceApple
-    var totalGrape = grape * priceGrape
-    var totalOrange = orange * priceOrange
-    // Hitung total biaya dari keseluruhan belanjaan buah
-    var totalPrice = totalApple + totalGrape + totalOrange
-    // Infokan kepada user detail uang yang harus dibayar
-    alert(
-        'Detail Belanja \n\n' +
-        'Apple : ' + apple + ' x ' + priceApple + ' = ' + totalApple + '\n' +
-        'Grape : ' + grape + ' x ' + priceGrape + ' = ' + totalGrape + '\n' +
-        'Orange : ' + orange + ' x ' + priceOrange + ' = ' + totalOrange + '\n\n'+
-        'Total : ' + totalPrice
-    )
-    // Meminta input user untuk uang yang harus dibayar
-    var money = prompt('Masukkan jumlah uang \nTotal Biaya= Rp.' + totalPrice)
-    // Hitung kemungkinan selisih antara uang dari user dengan total yang harus dibayar
-    var margin = money - totalPrice
-    // Jika uang yang diberikan kurang dari seharusnya
-    if(money < totalPrice){
-        alert('Transaksi dibatalkan, Uang yang Anda masukkan kurang ' + margin)
+    stockApel = 7;
+    stockGrape = 5;
+    stockOrange = 4;
 
-        // Jika uang yang diberikan lebih dari seharusnya
-    } else if(money > totalPrice){        
+    qtyApel = prompt('Masukkan jumlah Apel Rp. ' + hargaApel + '\nStok Apel: ' + stockApel);
+    if(qtyApel > stockApel){
+        alert('Error');
+        qtyApel = null;
+    }else if(qtyApel < 0){
+        alert('kuantitas tidak bisa dibawah 0')
+    }
+
+    qtyGrape = prompt('Masukkan jumlah Anggur Rp. ' + hargaGrape + '\nStok Anggur: ' + stockGrape);
+    if(qtyGrape > stockGrape || qtyGrape < 0){
+        alert('Error');
+        qtyGrape = null;
+    }
+    
+    qtyOrange = prompt('Masukkan jumlah Jeruk Rp. ' + hargaOrange + '\nStok Jeruk: ' + stockOrange);
+    if(qtyOrange > stockOrange || qtyOrange < 0){
+        alert('Error');
+        qtyOrange = null;
+    }
+
+    if(qtyApel === null || qtyGrape === null || qtyOrange === null){
+        alert("Transaksi dibatalkan, terjadi kesalahan di salah satu input")
+    }
+    else if(qtyApel == 0 && qtyGrape == 0 && qtyOrange == 0){
+        alert('Mohon input kuantitas barang di kasir');
+    }
+    else{
+        var totalApple = hargaApel * parseInt(qtyApel);
+        var totalGrape = hargaGrape * parseInt(qtyGrape);
+        var totalOrange = hargaOrange * parseInt(qtyOrange);
+        var totalPrice = totalApple + totalGrape + totalOrange;
 
         alert(
-            'Terimakasih \n\n' +
-            'Uang kembali untuk Anda : ' + margin
+            'Detail Transaksi \n\n' +
+            'Apel: ' + qtyApel + ' x ' + hargaApel + ' = ' + totalApple + '\n' + 
+            'Anggur: ' + qtyGrape + ' x ' + hargaGrape + ' = ' + totalGrape + '\n' + 
+            'Jeruk: ' + qtyOrange + ' x ' + hargaOrange + ' = ' + totalOrange + '\n\n' +
+            'Total : Rp.' + totalPrice  
         )
 
-        // Jika uang yang diberikan memiliki jumlah yang pas dari seharusnya
-    } else {
-        alert('Terimakasih !')
+        var money = prompt('Masukkan jumlah uang \nTotal Biaya = Rp. ' + totalPrice);
+        var margin = money - totalPrice;
+        // Uang lebih
+        // Uang kurang
+        // Uang pas
+
+        // Nested Condition
+        if(money > totalPrice){
+            alert('Terima Kasih \nKembalian anda sebesar Rp. ' + margin);
+        }else if(money < totalPrice){
+            alert('Transaksi dibatalkan, uang anda tidak mencukupi Rp.' + margin);
+        }else{
+            alert('Terima Kasih, uang pas')
+        }
     }
-}
+
 </script>

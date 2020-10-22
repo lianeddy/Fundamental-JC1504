@@ -1,0 +1,21 @@
+<script>
+    let apple, grape, orange;
+    let hargaApel = 10000;
+    let hargaGrape = 15000;
+    let hargaOrange = 20000;
+    let stockApel = 5
+    
+    let kondisiApel = true;
+    while(kondisiApel){
+        apple = prompt('Beli Berapa Apel Rp.' + hargaApel + '\nStock: ' + stockApel);
+        if(apple > stockApel){
+            alert('Stock tidak mencukupi');
+        }else{
+            alert('Stock cukup');
+            kondisiApel = false;
+        }
+    }
+
+    alert("Keluar Loop");
+
+</script>
