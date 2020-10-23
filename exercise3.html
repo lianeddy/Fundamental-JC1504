@@ -1,109 +1,84 @@
 <script>
-    var apple, grape, orange
+    var qtyApple, qtyGrape, qtyOrange;
 
-var priceApple = 10000
-var priceGrape = 15000
-var priceOrange = 20000
+    var applePrice = 10000; 
+    var grapePrice = 15000;
+    var orangePrice = 20000;
 
-var stockApple = 5
-var stockGrape = 7
-var stockOrange = 8
+    var stockApple = 5;
+    var stockGrape = 8;
+    var stockOrange = 10;
 
-// Variable conditional untuk menentukan apakah user harus mengulangi input jumlah quantity atau tidak
-// Satu variable ini digunakan dia 3 tempat inputan quantity seluruh buah (Apel, Anggur, Jeruk)
-var qtyCondition = false
+    var qtyCondition = true;
+
+    // Cek kondisi duluan
 
 do{
-    
-    do {
-
-        apple = prompt('Masukkan jumlah Apel \nStock Apel: ' + stockApple)
-
-        if(apple > stockApple || apple < 0 || apple == ''){
-            alert('Kesalahan dalam input, stock Apel = ' +  stockApple)
-            // Jika user salah dalam melakukan input quantity, akan di set true agar mengulangi proses sebelumnya (input quantity)
-            qtyCondition = true
-        } else {
-            // Jika user tidak salah dalam input quantity, set false agar menuju proses selanjutnya
-            qtyCondition = false
+    while(qtyCondition){
+        qtyApple = prompt('Masukkan jumlah Apel Rp. ' + applePrice + ' \nStock Apel: ' + stockApple);
+        if(qtyApple > stockApple || qtyApple < 0 || qtyApple == ''){
+            alert('Stock Apel tidak mencukupi');
+            qtyCondition = true;
+        }else{
+            alert('Stock Apel cukup');
+            qtyCondition = false;
         }
+    }
 
-    } while (qtyCondition);
-
-    do {
-
-        grape = prompt('Masukkan jumlah Anggur \nStock Anggur: ' + stockGrape)
-
-        if(grape > stockGrape || grape < 0 || grape == ''){
-            alert('Kesalahan dalam input, stock Anggur = ' + stockGrape)
-            // Jika user salah dalam melakukan input quantity, akan di set true agar mengulangi proses sebelumnya (input quantity)
-            qtyCondition = true
-        } else {
-            // Jika user tidak salah dalam input quantity, set false agar menuju proses selanjutnya
-            qtyCondition = false
+    // Cek kondisi di belakang
+    do{
+        qtyGrape = prompt('Masukkan jumlah Anggur Rp. ' + grapePrice + ' \nStock Anggur: ' + stockGrape);
+        if(qtyGrape > stockGrape){
+            alert('Stock Anggur tidak mencukupi');
+            qtyCondition = true;
+        }else{
+            alert('Stock Anggur cukup');
+            qtyCondition = false;
         }
+    }while(qtyCondition) // disini
 
-    } while (qtyCondition);
-
-    do {
-
-        orange = prompt('Masukkan jumlah Jeruk \nStock Jeruk: ' + stockOrange)
-
-        if(orange > stockOrange || orange < 0 || orange == ''){
-            alert('Kesalahan dalam input, stock Jeruk = ' + stockOrange)
-            // Jika user salah dalam melakukan input quantity, akan di set true agar mengulangi proses sebelumnya (input quantity)
-            qtyCondition = true
-        } else {
-            // Jika user tidak salah dalam input quantity, set false agar menuju proses selanjutnya
-            qtyCondition = false
+    do{
+        qtyOrange = prompt('Masukkan jumlah Jeruk Rp. ' + orangePrice + ' \nStock Jeruk: ' + stockOrange);
+        if(qtyOrange > stockOrange){
+            alert('Stock Jeruk tidak mencukupi');
+            qtyCondition = true;
+        }else{
+            alert('Stock Jeruk cukup');
+            qtyCondition = false;
         }
+    }while(qtyCondition)
 
-    } while (qtyCondition);
-
-    if(apple == 0 && orange === 0 && grape == 0){
-        alert('Mohon masukkan kuantitas di dalam kolom yang tersedia');
+    if(qtyApple == 0 && qtyGrape == 0 && qtyOrange == 0){
+        alert('Mohon masukkan kuantitas buah di input yang tersedia');
         qtyCondition = true;
     }
-    
+
 }while(qtyCondition)
 
+    var totalApple = qtyApple * applePrice; 
+    var totalGrape = qtyGrape * grapePrice; 
+    var totalOrange = qtyOrange * orangePrice;
+    var total = totalApple + totalGrape + totalOrange; 
 
-var totalApple = apple * priceApple
-var totalGrape = grape * priceGrape
-var totalOrange = orange * priceOrange
+    alert(
+        'Detail Belanja \n\n ' +
+        'Apel: ' + qtyApple + ' x ' + applePrice + ' = Rp. ' + totalApple + '\n' +
+        'Anggur: ' + qtyGrape + ' x ' + grapePrice + ' = Rp. ' + totalGrape + '\n' +
+        'Jeruk: ' + qtyOrange + ' x ' + orangePrice + ' = Rp. ' + totalOrange + '\n\n' +
+        'Total: Rp.' + total
+    );
 
-var totalPrice = totalApple + totalGrape + totalOrange
-
-alert(
-    'Detail Belanja \n\n' +
-    'Apple : ' + apple + ' x ' + priceApple + ' = ' + totalApple + '\n' +
-    'Grape : ' + grape + ' x ' + priceGrape + ' = ' + totalGrape + '\n' +
-    'Orange : ' + orange + ' x ' + priceOrange + ' = ' + totalOrange + '\n\n'+
-    'Total : ' + totalPrice
-)
-
-var moneyCondition = false
-do {
-    // Meminta input dari user berupa jumlah uang
-    var money = parseInt(prompt('Masukkan jumlah uang \nTotal Biaya: Rp. ' + totalPrice))
-
-    var margin = money - totalPrice
-
-    if(money < totalPrice){
-
-        alert('Uang yang Anda masukkan kurang ' + margin)
-        // Akan di set true agar mengulang proses penginputan uang
-        moneyCondition = true
-
-    } else {
-        
-        alert(
-            'Terimakasih \n\n' +
-            'Uang kembali untuk Anda : ' + margin
-        )
-        //  Akan di set false agar tidak mengulang proses input uang
-        moneyCondition = false
+    var moneyCondition = true;
+    while(moneyCondition){
+        var money = prompt('Masukkan jumlah uang \nTotal Biaya: Rp. ' + total);
+        var margin = money - total;
+        if(money < total){
+            alert('Uang and tidak mencukupi \nKurang sebesar: Rp. ' + margin);
+            moneyCondition = true;
+        }
+        else{
+            alert('Terima Kasih\n Uang kembalian anda sebesar: Rp. ' + margin);
+            moneyCondition = false;
+        }
     }
-
-} while (moneyCondition);
 </script>

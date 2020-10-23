@@ -100,3 +100,19 @@ if (x > 5) {
 if (x > 9) {
   console.log("lebih besat dari 9");
 }
+
+if(){
+
+}
+else{
+
+}
+
+if(){
+
+}else if(){
+
+}
+else{
+  
+}

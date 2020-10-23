@@ -1,21 +1,37 @@
 <script>
-    let apple, grape, orange;
-    let hargaApel = 10000;
-    let hargaGrape = 15000;
-    let hargaOrange = 20000;
-    let stockApel = 5
-    
-    let kondisiApel = true;
-    while(kondisiApel){
-        apple = prompt('Beli Berapa Apel Rp.' + hargaApel + '\nStock: ' + stockApel);
-        if(apple > stockApel){
-            alert('Stock tidak mencukupi');
-        }else{
-            alert('Stock cukup');
-            kondisiApel = false;
-        }
-    }
 
-    alert("Keluar Loop");
+    var fruits = ['Apple', 'Grape', 'Orange']
+    var stock = [5, 7, 8]
+    var price = [10000, 15000, 20000]
+    var qty = [0, 0, 0]
+    var total = [0, 0, 0]
+    var mainMenu = true;
+
+    
+    do{
+        var menu = parseInt(prompt(
+            "Menu \n\n" +
+            "0. Daftar buah\n" + 
+            "1. Tambah Buah\n" + 
+            "2. Hapus Buah\n" + 
+            "3. Belanja"
+        ));
+        if(menu === 0){
+            var daftarBuah = "Daftar Buah \n\n"
+            for(var i = 0 ;i < fruits.length; i++){
+                daftarBuah += (i+1) + '. ' + fruits[i] + ' | Stock: ' + stock[i] + ' | Harga: Rp.' + price[i] + '\n'; 
+            };
+            alert(daftarBuah); // :)
+        }else if(menu === 1){
+            alert("ini Tambah Buah");
+        }else if (menu === 2){
+            alert("Ini hapus buah");
+        }else if(menu === 3){
+            alert('ini belanja');
+        }else{
+            alert('Menu tidak ditemukan')
+        }
+        mainMenu = confirm('Kembali ke menu utama?');
+    }while(mainMenu)
 
 </script>
