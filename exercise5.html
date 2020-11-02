@@ -1,0 +1,154 @@
+<script>
+    let fruits = [
+    {name : 'Apel', price: 10000, stock: 5, qty : 0, total: 0},
+    {name : 'Anggur', price: 15000, stock: 7, qty : 0, total: 0},
+    {name : 'Jeruk', price: 20000, stock: 8, qty : 0, total: 0}
+]
+
+
+function showList() {
+    // Membuat daftar buah
+    var fruitList = 'Daftar buah\n\n'
+    for (var i = 0; i < fruits.length; i++) {
+        fruitList += (i + 1) + ' ' + fruits[i].name + ' | ' + fruits[i].stock + ' | ' + fruits[i].price +'\n'
+        
+    }
+
+    // Menampilkan daftar buah
+    alert(fruitList)
+}
+
+var mainApp = false
+do {
+    var mainOpt = parseInt(prompt(
+        'Apa yang ingin anda lakukan ?\n\n' +
+        '0. Menampilkan daftar Buah\n' +
+        '1. Menambah Buah\n' +
+        '2. Menghapus Buah\n' +
+        '3. Membeli Buah\n\n'
+    ))
+
+    if(mainOpt === 0) {
+        showList()
+
+    } else if (mainOpt === 1) {
+        // Menambah Product
+        var newFruit = prompt('Masukkan nama buah :')
+        var newStock = parseInt(prompt('Masukkan jumlah stock :'))
+        var newPrice = parseInt(prompt('Masukkan jumlah harga satuan :'))
+
+        // Push ke masing - masing array
+        fruits.push(
+            {
+                name : newFruit,
+                price: newPrice,
+                stock: newStock,
+                qty : 0,
+                total: 0              
+            }
+        )
+        
+        // Tampilkan daftar buah
+        showList(fruits)
+    } else if (mainOpt === 2) {
+        // Menghapus product
+
+        var fruitList = 'Pilih buah yang ingin dihapus\n\n'
+        for (var i = 0; i < fruits.length; i++) {
+            fruitList += (i + 1) + ' ' + fruits[i].name + '\n'
+            
+        }
+
+        // Menerima pilihan buah dari user
+        // Dikurangi 1 karena array dimulai dari nol
+        var selected = parseInt(prompt(fruitList)) - 1
+
+        // Menghapus satu data pada array
+        fruits.splice(selected, 1)
+
+        // Menampilkan daftar buah
+        showList(fruits)
+    } else {
+        // Membeli product
+
+        // Membuat variabel sebagai variabel penentu do while
+        var qtyCondition = false
+
+        // Meminta jumlah quantity untuk setiap buah
+        for (i = 0 ; i < fruits.length ; i++) {
+            do {
+                fruits[i].qty= parseInt(prompt('Masukkan jumlah ' + fruits[i].name))
+            
+                // Jika jumalh quantity melebihi stock yang ada
+                if(fruits[i].qty > fruits[i].stock){
+                    // Menampilkan informasi stock yang tersedia
+                    alert('Kesalahan dalam input, stock ' + fruits[i].name + ' = ' + fruits[i].stock)
+                    // Mengatur variabel agar mengulangi proses do while
+                    qtyCondition = true
+            
+                } else {
+                    // // Mengatur variabel agar tidak mengulangi proses do while
+                    qtyCondition = false
+            
+                }
+            
+            } while (qtyCondition);
+        }
+
+        // Menghitung total harga
+        var totalPrice = 0
+        for(i = 0 ; i < fruits.length ; i++){
+            // total harga perbuah
+            fruits[i].total = fruits[i].qty * fruits[i].price
+
+            // total harga seluruh buah
+            totalPrice += fruits[i].total
+        }
+
+        // Membuat detail belanja
+        var finalReport = ''
+        for(i = 0 ; i < fruits.length ; i++){
+            finalReport +=  fruits[i].name + ' : ' + fruits[i].qty + ' x ' + fruits[i].price + ' = ' + fruits[i].total + '\n'
+        }
+
+        // Menampilkan informasi belanja termasuk total uang yang harus dibayar
+        alert(
+            'Detail Belanja \n\n' + finalReport + '\nTotal : ' + totalPrice
+        )
+
+        // Menerima jumlah uang dari user
+        var moneyCondition = false
+        do {
+
+            var money = prompt('Masukkan jumlah uang')
+
+            // Jika uang yang diberikan lebih sedikit dari total belanja
+            if(money < totalPrice){
+                // Menghitung jumlah kekurangan uang
+                var margin = totalPrice - money
+                // Menampilkan informasi kekurangan uang yang harus dipenuhi
+                alert('Uang yang Anda masukkan kurang ' + margin)
+                // Mengatur variabel agar mengulang proses yang ada didalam do while
+                moneyCondition = true
+
+            } else {
+                // Menghitung kembalian
+                var changeMoney = money - totalPrice
+                // Menampilkan informasi kembalian
+                alert(
+                    'Terimakasih \n\n' +
+                    'Uang kembali untuk Anda : ' + changeMoney
+                )
+                // Mengatur variabel agar tidak mengulang proses yang ada didalam do while
+                moneyCondition = false
+            }
+
+        } while (moneyCondition);
+    }
+
+    // Menerima konfirmasi dari user
+    // Nilai yang diterima antara true atau false
+    mainApp = confirm('Kembali ke menu ?')
+
+} while (mainApp); 
+</script>

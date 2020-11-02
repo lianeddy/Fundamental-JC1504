@@ -1,0 +1,251 @@
+<script>
+    class Products{
+    constructor(_name, _price, _stock) {
+        this.name = _name
+        this.price = _price
+        this.stock = _stock
+        this.qty = 0
+        this.total = 0
+    }
+}
+
+class FastFood extends Products{
+    constructor(_name, _price, _stock, _expired){
+        super(_name, _price, _stock)
+        this.category = 1
+        this.expired = _expired
+    }
+}
+
+class Cloth extends Products{
+    constructor(_name, _price, _stock, _size){
+        super(_name, _price, _stock)
+        this.category = 2
+        this.size = _size
+    }
+}
+
+class Electronic extends Products{
+    constructor(_name, _price, _stock, _warranty){
+        super(_name, _price, _stock)
+        this.category = 3
+        this.warranty = _warranty
+    }
+}
+
+class Fruits extends Products{
+    constructor(_name, _price, _stock, _sugar){
+        super(_name, _price, _stock)
+        this.category = 4
+        this.sugarLvl = _sugar
+    }
+}
+
+let products = [
+    {category: 1, name : 'Noodle', price: 20000, stock: 8, expired : 2020, qty : 0, total: 0},
+    {category: 2, name : 'Hoodie', price: 15000, stock: 7, size: 'L', qty : 0, total: 0},
+    {category: 3, name : 'Headphone', price: 20000, stock: 8, warranty : 'Yes', qty : 0, total: 0},
+    {category: 4, name : 'Apel', price: 10000, stock: 5, sugarLvl: 'High', qty : 0, total: 0},
+
+]
+
+function renderList(data) {
+    // Membuat daftar buah
+    let productsList = 'Daftar Products\n\n'
+    for (let i = 0; i < data.length; i++) {
+
+        if(data[i].category === 1){
+            productsList += (i + 1) + '. name : ' +  data[i].name + ' | stock : ' + data[i].stock + ' | '  + 'exp : ' +  data[i].expired + ' | price : ' + data[i].price +'\n'
+        } else if(data[i].category === 2){
+            productsList += (i + 1) + '. name : ' +  data[i].name + ' | stock : ' + data[i].stock + ' | '  + 'size : ' + data[i].size + ' | price : ' + data[i].price +'\n'
+        } else if(data[i].category === 3){
+            productsList += (i + 1) + '. name : ' +  data[i].name + ' | stock : ' + data[i].stock + ' | '  + 'warranty : ' + data[i].warranty + ' | price : ' + data[i].price +'\n'
+        } else if(data[i].category === 4){
+            productsList += (i + 1) + '. name : ' +  data[i].name + ' | stock : ' + data[i].stock + ' | '  + 'sugar lvl : ' + data[i].sugarLvl + ' | price : ' + data[i].price +'\n'
+        }
+        
+    }
+
+    // Menampilkan daftar buah
+    return productsList
+}
+
+let again = true
+do {
+
+    // Pilihan menu dari user
+    let mainOpt = prompt(
+        'Apa yang ingin anda lakukan ?\n\n' +
+        '0. Menampilkan daftar Produk\n' +
+        '1. Menambah Produk\n' +
+        '2. Menghapus Produk\n' +
+        '3. Membeli Produk\n' +
+        '4. Keluar\n\n'
+    )
+
+    if(mainOpt == 0) {
+        // Tampilkan daftar products
+        alert(renderList(products))
+
+    } else if (mainOpt == 1){
+        var categoryOpt = parseInt(
+            prompt(
+                'Kategori produk yang ingin ditambahkan\n\n' +
+                '1 . Cepat Saji \n' +
+                '2 . Pakaian \n' +
+                '3 . Elektronik \n' +
+                '4 . Buah \n\n'
+            )
+        )
+
+        var productName = prompt('Masukkan nama product :')
+        var productStock = parseInt(prompt('Masukkan jumlah stock :'))
+        var productPrice = parseInt(prompt('Masukkan jumlah harga satuan :'))
+
+        var newProduct
+    
+        if(categoryOpt === 1){
+            // Fast Food
+            var productExpired = prompt('Masukkan waktu expired :')
+            newProduct = new FastFood(productName, productPrice, productStock, productExpired)
+
+        } else if(categoryOpt === 2){
+            // Cloth
+            var productSize = prompt('Masukkan ukuran :')
+            newProduct = new Cloth(productName, productPrice, productStock, productSize)
+
+        } else if(categoryOpt === 3){
+            // Electronic
+            var productWarranty = prompt('Masukkan status garansi :')
+            newProduct = new Electronic(productName, productPrice, productStock, productWarranty)
+
+        } else if(categoryOpt === 4){
+            // Fruit
+             var productSugar = prompt('Masukkan tingkat kandungan gula :')
+            newProduct = new Fruits(productName, productPrice, productStock, productSugar)
+
+        }
+
+        products.push(newProduct)
+        
+        // Tampilkan daftar products
+        alert(renderList(products))
+
+    } else if (mainOpt == 2) {
+        // Menghapus product
+        let productList = 'Pilih product yang ingin dihapus\n\n'
+        for (let i = 0; i < products.length; i++) {
+            productList += (i + 1) + ' ' + products[i].name + '\n'
+            
+        }
+
+        // Menerima pilihan buah dari user
+        // Dikurangi 1 karena array dimulai dari nol
+        let selected = parseInt(prompt(productList)) - 1
+
+        // Menghapus satu data pada array
+        products.splice(selected, 1)
+
+        // Tampilkan daftar products
+        alert(renderList(products))
+
+    } else if (mainOpt == 3) {
+        // Membeli product
+
+        // Membuat variabel sebagai variabel penentu do while
+        let againCondition = false
+        do {
+
+            // Menerima inputan pilihan buah
+            let idProduct = parseInt(prompt(renderList(products))) -1
+            
+            var qtyProduct = parseInt(prompt('Masukkan jumlah ' + products[idProduct].name))
+
+            if(qtyProduct > products[idProduct].stock){
+                alert('Kesalahan dalam input, stock ' + products[idProduct].name + ' = ' + products[idProduct].stock)
+                againCondition = true
+
+            } else {
+                // Menerima jumlah quantity buah yang dipilih
+                products[idProduct].qty += qtyProduct
+
+                products[idProduct].stock -= qtyProduct
+
+                againCondition = confirm('Ingin belanja lainnya ?')
+            }
+
+
+        } while (againCondition);
+
+
+        // Menghitung total harga
+        let totalPrice = 0
+        for(i = 0 ; i < products.length ; i++){
+            // total harga perbuah
+            products[i].total = products[i].qty * products[i].price
+
+            // total harga seluruh buah
+            totalPrice += products[i].total
+        }
+
+        // Membuat detail belanja
+        let finalReport = ''
+        for(i = 0 ; i < products.length ; i++){
+
+            // Menghitung detail produk yang dibeli
+            if(products[i].qty > 0){
+                finalReport +=  products[i].name + ' : ' + products[i].qty + ' x ' + products[i].price + ' = ' + products[i].total + '\n'
+            }
+        }
+
+        // Menampilkan informasi belanja termasuk total uang yang harus dibayar
+        alert(
+            'Detail Belanja \n\n' + finalReport + '\nTotal : ' + totalPrice
+        )
+
+        // Menerima jumlah uang dari user
+        let moneyCondition = false
+        do {
+
+            // Menerima jumlah uang
+            let money = prompt('Masukkan jumlah uang')
+
+            // Menghitung jumlah kekurangan uang
+            let margin = totalPrice - money
+
+            // Jika uang yang diberikan lebih sedikit dari total belanja
+            if(money < totalPrice){
+
+                // Menampilkan informasi kekurangan uang yang harus dipenuhi
+                alert('Uang yang Anda masukkan kurang ' + margin)
+                // Mengatur variabel agar mengulang proses yang ada didalam do while
+                moneyCondition = true
+
+            } else {
+
+                // Menampilkan informasi kembalian
+                alert(
+                    'Terimakasih \n\n' +
+                    'Uang kembali untuk Anda : ' + margin
+                )
+
+                // Kosongkan qty dan total setelah selesai satu proses belanja
+                for (let i = 0; i < products.length; i++) {
+                    products[i].qty = products[i].total = 0
+                    
+                }
+
+                // Mengatur variabel agar tidak mengulang proses yang ada didalam do while
+                moneyCondition = false
+            }
+
+        } while (moneyCondition);
+
+    } else {
+        // Keluar dari aplikasi
+        again = false
+    }
+
+} while (again);
+    
+</script>
