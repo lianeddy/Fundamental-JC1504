@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    function onBtnClick(){
+        var intro = 'nama saya ';
+        var hasil = document.getElementById("namaDepan").value;
+        intro += hasil;
+        document.getElementById("namaDepan").value = '';
+        
+        var usia = document.getElementById("usia").value;
+        intro += ', ' + usia + ' Tahun'
+        document.getElementById("usia").value = '';
+
+        var gender = document.getElementsByName("gender");
+        if(gender[0].checked) {
+            intro += ', ' + gender[0].value;
+        }else{
+            intro += ', ' + gender[1].value;
+        }
+        
+        document.getElementById("output").innerHTML = intro;
+    }
+
+    function onBtnForm(){
+        var output = "";
+        console.log(document.getElementsByName("hobby")[0].checked);
+        var hobbies = document.getElementsByName("hobby");
+        if(hobbies[0].checked){
+            output += hobbies[0].value + ' ';
+        }
+        if(hobbies[1].checked){
+            output += hobbies[1].value + ' ';
+        }
+        if(hobbies[2].checked){
+            output += hobbies[2].value + ' ';
+        }
+        document.getElementById("outputHobbies").innerHTML = output;
+    }
+</script>
+
+<body>
+    <form onsubmit="return false" id="form">
+        Nama: <input type="text" id="namaDepan"/>
+        <br>
+        <br>
+        Usia: <input type="number" id="usia" />
+        <br>
+        <br>
+
+        <input type="radio" name="gender" checked value="Pria"/> Pria
+        <input type="radio" name="gender" value="Wanita" /> Wanita
+
+        <br>
+
+        <input type="checkbox" name="hobby" id="a1" value="Futsal"> Futsal
+        <input type="checkbox" name="hobby" id="a2" value="Basket"> Basket
+        <input type="checkbox" name="hobby" id="a3" value="Badminton"> Badminton
+
+        <br>
+
+        <button onclick="onBtnClick()">
+            Click Me!
+        </button>
+        <button onclick="onBtnForm()">
+            Hobby
+        </button>
+        <p id="output">Result here</p>
+        <p id="outputHobbies">Result here</p>
+    </form>
+</body>
+
+</html>

@@ -53,15 +53,15 @@ function renderList(data) {
     // Membuat daftar buah
     let productsList = 'Daftar Products\n\n'
     for (let i = 0; i < data.length; i++) {
-
+        productsList += (i + 1) + '. name : ' +  data[i].name + ' | stock : ' + data[i].stock + ' | price : ' + data[i].price
         if(data[i].category === 1){
-            productsList += (i + 1) + '. name : ' +  data[i].name + ' | stock : ' + data[i].stock + ' | '  + 'exp : ' +  data[i].expired + ' | price : ' + data[i].price +'\n'
+            productsList += 'exp : ' +  data[i].expired + '\n'
         } else if(data[i].category === 2){
-            productsList += (i + 1) + '. name : ' +  data[i].name + ' | stock : ' + data[i].stock + ' | '  + 'size : ' + data[i].size + ' | price : ' + data[i].price +'\n'
+            productsList += 'size : ' + data[i].size + '\n'
         } else if(data[i].category === 3){
-            productsList += (i + 1) + '. name : ' +  data[i].name + ' | stock : ' + data[i].stock + ' | '  + 'warranty : ' + data[i].warranty + ' | price : ' + data[i].price +'\n'
+            productsList +=  'warranty : ' + data[i].warranty + '\n'
         } else if(data[i].category === 4){
-            productsList += (i + 1) + '. name : ' +  data[i].name + ' | stock : ' + data[i].stock + ' | '  + 'sugar lvl : ' + data[i].sugarLvl + ' | price : ' + data[i].price +'\n'
+            productsList += 'sugar lvl : ' + data[i].sugarLvl + '\n'
         }
         
     }
