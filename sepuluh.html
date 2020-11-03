@@ -42,6 +42,10 @@
         }
         document.getElementById("outputHobbies").innerHTML = output;
     }
+
+    function addToHtml(){
+        document.getElementById('here').innerHTML = '<h1>Hello</h1>'
+    }
 </script>
 
 <body>
@@ -70,8 +74,12 @@
         <button onclick="onBtnForm()">
             Hobby
         </button>
+        <button onclick="addToHtml()">
+            Add HTML
+        </button>
         <p id="output">Result here</p>
         <p id="outputHobbies">Result here</p>
+        <div id="here"></div>
     </form>
 </body>
 

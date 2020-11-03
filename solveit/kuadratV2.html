@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Kuadrat</title>
+</head>
+<script>
+    function kuadratkan(){
+        var num1 = parseInt(document.getElementById('num1').value);
+        var num2 = parseInt(document.getElementById('num2').value);
+        var kuadrat = Math.pow(num1,num2);
+        var output = "Hasil " + num1 + "<sup>"+ num2 +"</sup>" + " = " + kuadrat;
+        document.getElementById("output").innerHTML = output
+    }
+</script>
+<body>
+    <p>Masukkan Angka</p>
+    <input type="number" id="num1">
+    <br>
+    <input type="number" id="num2">
+    <br>
+    <button onclick="kuadratkan()">Kuadratkan!</button>
+    <h3 id="output"></h3>
+</body>
+</html>

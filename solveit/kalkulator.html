@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Kalkulator Sederhana</h2>
+    Angka 1 <input type="number" id="num1">
+    <br>
+    Angka 2 <input type="number" id="num2">
+    <br>
+    <br>
+    <button onclick="tambah()">Tambah</button>
+    <button onclick="kurang()">Kurang</button>
+    <button onclick="bagi()">Bagi</button>
+    <button onclick="kali()">Kali</button>
+    <button onclick="modulus()">Modulus</button>
+    <button onclick="pangkat">Pangkat</button>
+    <br>
+    <h3 id="output"></h3>
+</body>
+<script >
+    let num1 = document.getElementById("num1").value;
+    var num2 = document.getElementById("num2");
+
+    function tambah(){
+        console.log(num1)
+        console.log(num2)
+        var output = num1 + num2;
+        return document.getElementById("output").innerHTML = num1 + " + " + num2 + " = " + output;
+    };
+    function kurang(){};
+    function bagi(){};
+    function kali(){};
+    function modulus(){};
+    function pangkat(){};
+
+</script>
+</html>
