@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td, table, tr{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama</th>
+            </tr>
+        </thead>
+        <tbody id="output">
+            <!-- <tr>
+                <td>1</td>
+                <td>Lian</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Bambang</td>
+            </tr> -->
+        </tbody>
+    </table>
+</body>
+
+<script>
+    var orang = [
+        {
+            id: 1,
+            nama: "Lian"
+        },
+        {
+            id: 2,
+            nama: "Bambang"
+        },
+    ];
+
+    // Template String ``
+    var output = "";
+    for(var i = 0 ; i<orang.length; i++){
+        output += `
+            <tr>
+                <td>${orang[i].id}</td>
+                <td>${orang[i].nama}</td>
+            </tr>
+        `
+    }
+    document.getElementById("output").innerHTML = output;
+    
+</script>
+</html>
