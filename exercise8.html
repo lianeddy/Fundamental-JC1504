@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market v1</title>
+    <style>
+        table, th, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <table>
+            <thead>
+                <th>Form Product</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <!-- <form onclick="return false"> -->
+                            <p>Nama: <input type="text" id="name" /></p>
+                            <p>Harga: <input type="number" id="price" /></p>
+                            <p>
+                                Kondisi: 
+                                <input type="radio" name="condition" value="Baru" checked> Baru 
+                                <input type="radio" name="condition" value="Second"> Second
+                            </p>
+                            <p>
+                                Kategori:
+                                <select id="category">
+                                    <option value="Elektronik">Elektronik</option>
+                                    <option value="Pakaian">Pakaian</option>
+                                    <option value="Otomotif">Otomotif</option>
+                                </select>
+                            </p>
+                            <button onclick="tambah()">
+                                Tambah
+                            </button>
+                        <!-- </form> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Data Product</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Harga</th>
+                                    <th>Kondisi</th>
+                                    <th>Kategori</th>
+                                </tr>
+                            </thead>
+                            <tbody id="output">
+
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </center>
+</body>
+<script>
+    var arrProduct = [
+        {nama : "Laptop", harga : 10000000, kondisi: 'Baru', kategori: 'Elektronik'},
+    ];
+
+    function tambah(){
+        var nama = document.getElementById("name").value;
+        var harga = parseInt(document.getElementById("price").value);
+        var kondisi = document.querySelector('input[name=condition]:checked').value;
+        var kategori = document.getElementById('category').value
+
+        arrProduct.push({
+            nama,
+            harga,
+            kondisi,
+            kategori
+        })
+
+        showList();
+    }
+
+    function showList(){
+        // var output = "";
+        // for(var i = 0; i<arrProduct.length; i++){
+        //     output += `
+        //         <tr>
+        //             <td>${arrProduct[i].nama}</td>
+        //             <td>${arrProduct[i].harga}</td>
+        //             <td>${arrProduct[i].kondisi}</td>
+        //             <td>${arrProduct[i].kategori}</td>
+        //         </tr>
+        //     `
+        // }
+        var output = arrProduct.map(function (val){
+            return (
+                `
+                    <tr>
+                        <td>${val.nama}</td>
+                        <td>${val.harga}</td>
+                        <td>${val.kondisi}</td>
+                        <td>${val.kategori}</td>
+                    </tr>
+                `
+            )
+        })
+        console.log(output);
+        console.log(output.join(''));
+        return document.getElementById("output").innerHTML = output.join('');
+    }
+
+    showList();
+
+</script>
+</html>
