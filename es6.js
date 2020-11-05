@@ -107,23 +107,35 @@
 // Kedua CallBack
 // Tujuan dari function sama seperti .map
 
-var arr = [1, 2, 3];
-function mapManual(arr, func) {
-  let newArr = [];
-  for (let i = 0; i < arr.length; i++) {
-    newArr.push(func(arr[i]));
-  }
-  return newArr;
-}
+// var arr = [1, 2, 3];
+// function mapManual(arr, func) {
+//   let newArr = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     newArr.push(func(arr[i]));
+//   }
+//   return newArr;
+// }
 
-function kaliDua(num) {
-  return num * 2;
-}
-function kaliTiga(num) {
-  return num * 3;
-}
-function bagiDua(num) {
-  return num / 2;
-}
-// console.log(newArrAuto);
-console.log(mapManual(arr, bagiDua));
+// function kaliDua(num) {
+//   return num * 2;
+// }
+// function kaliTiga(num) {
+//   return num * 3;
+// }
+// function bagiDua(num) {
+//   return num / 2;
+// }
+// // console.log(newArrAuto);
+// console.log(mapManual(arr, bagiDua));
+
+// var date = new Date();
+// var id = date.getTime();
+// console.log(id);
+
+// arrProduct.push({
+//   id: date.getTime(),
+//   name: newname,
+// });
+
+var nama = "bambang";
+console.log(nama.includes("mb"));

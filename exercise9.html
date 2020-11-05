@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VERSION 2.1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+  <form >
+      <!-- FILTER -->
+      <fieldset>
+          <legend>Filter</legend>
+          <p>Nama: <input type="text" id="keyword" oninput="filterName()"></p>
+          <p>Harga: <input type="number" name="min" id="min" onkeyup="filterHarga()"> - <input type="number" name="max" id="max" onkeyup="filterHarga()"></p>
+          <p>Category: <select name="category" id="categoryFilter" onchange="filterKategori()"></select></p>
+      </fieldset>
+      
+      <!-- INPUT -->
+      <fieldset>
+          <legend>Input Data</legend>
+          <table>
+              <td><input type="text" name="nama" id="nameInput" placeholder="Nama"></td>
+              <td><input type="number" name="nama" id="priceInput" placeholder="Harga"></td>
+              <td><select name="category" id="categoryInput"></select></td>
+              <td><input type="text" name="nama" id="stockInput" placeholder="Stock"></td>
+          </table>
+          <p><input type="button" value="Input" onclick="addToList()"></p>
+      </fieldset>
+
+      <!-- RENDER -->
+      <fieldset>
+          <legend>Tabel Data</legend>
+          <table id="myTable">
+              <thead>
+                  <th>Id</th>
+                  <th>Category</th>
+                  <th>Nama</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <!--  <th colspan="2">Action</th> -->
+              </thead>
+              <tbody id="render">
+                  
+              </tbody>
+          </table>
+      </fieldset>
+  </form>
+</body>
+<script>
+    var arrProduct = [
+      { id: 15945893849, category: 'Fast Food', name: "Noodle", price: 5000, stock: 9},
+      { id: 15945893843, category: 'Electronic', name: "Headphone", price: 500000, stock: 10},
+      { id: 15945893844, category: 'Clothing', name: "Hoodie", price: 300000, stock: 7},
+      { id: 15945893845, category: 'Fruit', name: "Apple", price: 10000, stock: 8},
+    ];
+
+    var categoryProduct = [
+      "All",
+      "Fast Food",
+      "Electronic",
+      "Clothing",
+      "Fruit"
+    ];
+
+    function showCategories(){
+      var newArr = categoryProduct.map((val) => {
+        return(
+          `<option value="${val}">${val}</option>`
+        )
+      })
+      document.getElementById("categoryInput").innerHTML = newArr.join('');
+      document.getElementById("categoryFilter").innerHTML = newArr.join('');
+    }
+
+    function showList(arr){
+      var newArr = arr.map((val) => {
+        return(
+          `
+            <tr>
+              <td>${val.id}</td>
+              <td>${val.category}</td>
+              <td>${val.name}</td>
+              <td>${val.price}</td>
+              <td>${val.stock}</td>
+            </tr>
+          `
+        )
+      })
+      return document.getElementById("render").innerHTML = newArr.join('');
+    }
+
+    function addToList(){
+      var name = document.getElementById("nameInput").value;
+      var price = parseInt(document.getElementById("priceInput").value);
+      var stock = document.getElementById("stockInput").value;
+      var category = document.getElementById("categoryInput").value;
+
+      arrProduct.push({
+        id: new Date().getTime(),
+        name,
+        price, 
+        stock,
+        category
+      })
+      showList(arrProduct);
+    }
+
+    function filterName(){
+      var nama = document.getElementById("keyword").value; // ApPLe
+      var nameSearchLower = nama.toLowerCase(); // apple
+      var newArr = arrProduct.filter((val) => { // Apple
+        var namaProdLower = val.name.toLowerCase(); // apple
+        return namaProdLower.includes(nameSearchLower);
+      })
+      showList(newArr);
+    }
+
+    function filterHarga(){
+      var hargaMin = document.getElementById("min").value;
+      var hargaMax = document.getElementById("max").value;
+      
+      if(hargaMin !== "" && hargaMax !== ""){
+        var newArr = arrProduct.filter((val) => {
+          return val.price >= hargaMin && val.price <= hargaMax
+        })
+        showList(newArr)
+      }else{
+        showList(arrProduct)
+      }
+    }
+
+    function filterKategori(){
+      var categoryFilter = document.getElementById("categoryFilter").value;
+      if(categoryFilter === "All"){
+        showList(arrProduct)
+      }else{
+        var newArr = arrProduct.filter((val) => {
+          return val.category === categoryFilter
+        })
+        showList(newArr)
+      }
+    }
+
+    showList(arrProduct);
+    showCategories();
+</script>
+</html>
+
