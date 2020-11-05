@@ -25,7 +25,7 @@
 </head>
 
 <body>
-  <form >
+  <form onclick="return false">
       <!-- FILTER -->
       <fieldset>
           <legend>Filter</legend>
@@ -56,9 +56,27 @@
                   <th>Nama</th>
                   <th>Price</th>
                   <th>Stock</th>
-                  <!--  <th colspan="2">Action</th> -->
+                  <th colspan="2">Action</th>
               </thead>
               <tbody id="render">
+                  
+              </tbody>
+          </table>
+      </fieldset>
+      
+      <!-- Cart -->
+      <fieldset>
+          <legend>Cart</legend>
+          <table id="cartTable">
+              <thead>
+                  <th>Id</th>
+                  <th>Category</th>
+                  <th>Nama</th>
+                  <th>Price</th>
+                  <th>Qty</th>
+                  <th colspan="2">Action</th>
+              </thead>
+              <tbody id="renderCart">
                   
               </tbody>
           </table>
@@ -73,6 +91,8 @@
       { id: 15945893845, category: 'Fruit', name: "Apple", price: 10000, stock: 8},
     ];
 
+    var cart = [];
+
     var categoryProduct = [
       "All",
       "Fast Food",
@@ -80,6 +100,36 @@
       "Clothing",
       "Fruit"
     ];
+
+    function addToCart(index){
+      var newProduct = arrProduct[index];
+      console.log(newProduct, 'initial product')
+      newProduct.qty = 1;
+      delete newProduct.stock;
+      console.log(newProduct, 'finished product')
+      cart.push(newProduct)
+      console.log(cart);
+      showCart();
+    }
+
+    function showCart(){
+      var newArr = cart.map((val) => {
+        return(
+          `
+            <tr>
+              <td>${val.id}</td>
+              <td>${val.category}</td>
+              <td>${val.name}</td>
+              <td>${val.price}</td>
+              <td>${val.qty}</td>
+              <td></td>
+              <td></td>
+            </tr>
+          `
+        )
+      })
+      return document.getElementById("renderCart").innerHTML = newArr.join('');
+    }
 
     function showCategories(){
       var newArr = categoryProduct.map((val) => {
@@ -92,7 +142,7 @@
     }
 
     function showList(arr){
-      var newArr = arr.map((val) => {
+      var newArr = arr.map((val, i) => {
         return(
           `
             <tr>
@@ -101,11 +151,29 @@
               <td>${val.name}</td>
               <td>${val.price}</td>
               <td>${val.stock}</td>
+              <td><button onclick="addToCart(${i})">Add</button></td>
+              <td><button onclick="deleteData(${i})">Delete</button></td>
             </tr>
           `
         )
       })
       return document.getElementById("render").innerHTML = newArr.join('');
+    }
+
+    function deleteData(index){
+      // Id filter
+      // 2 id yang mau di delete idProduct
+      // 1,2 3 4 id produk
+      // arrProduct = arrProduct.filter((val) => {
+      //   return val.id !== idProduct
+      // });
+      // showList(arrProduct);
+
+
+      // Index splice
+      console.log(arrProduct[index]);
+      arrProduct.splice(index, 1);
+      showList(arrProduct);
     }
 
     function addToList(){
