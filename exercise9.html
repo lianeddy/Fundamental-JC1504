@@ -167,7 +167,6 @@
     }
 
     function showList(arr, param){
-      console.log(param);
       var newArr = arr.map((val, i) => {
         if(i === param){
           return(
@@ -177,8 +176,8 @@
                 <td>${val.category}</td>
                 <td><input type="text" id="editName"></td>
                 <td><input type="text" id="editPrice"></td>
-                <td><input type="text" id="editstock"></td>
-                <td><button onclick="confirmEdit()">Save</button></td>
+                <td><input type="text" id="editStock"></td>
+                <td><button onclick="confirmEdit(${i})">Save</button></td>
                 <td><button onclick="cancelEdit()">Cancel</button></td>
               </tr>
             `
@@ -200,14 +199,30 @@
             `
           )
         }
-      })
-      console.log(newArr)
+      });
       return document.getElementById("render").innerHTML = newArr.join('');
     }
 
     function editData(index){
       console.log(index)
       showList(arrProduct, index)
+    }
+
+    function cancelEdit(){
+      showList(arrProduct)
+    }
+
+    function confirmEdit(index){
+      var newName, newPrice, newStock;
+      newName = document.getElementById('editName').value;
+      newPrice = document.getElementById('editPrice').value;
+      newStock = document.getElementById('editStock').value;
+
+      arrProduct[index].name = newName;
+      arrProduct[index].price = newPrice;
+      arrProduct[index].stock = newStock;
+
+      showList(arrProduct);
     }
 
     function deleteData(index){
