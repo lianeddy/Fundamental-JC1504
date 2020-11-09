@@ -80,7 +80,17 @@
                   
               </tbody>
           </table>
+          <p><input style="height: 30px;" type="button" value="Payment" onclick="payment()"></p>
       </fieldset>
+
+      <!-- Payment -->
+      <fieldset>
+        <legend>Payment</legend>
+        <h2>Transaction Detail</h2>
+        <div id="payment">
+            
+        </div>
+    </fieldset>
   </form>
 </body>
 <script>
@@ -292,6 +302,32 @@
         showList(newArr)
       }
     }
+
+    function payment(){
+      var listPayment = cart.map((val) => {
+        return (
+          `<p>${val.category} | ${val.name} | ${val.price} x ${val.qty} = Rp. ${val.price * val.qty}</p>`
+        )
+      })
+      console.log(listPayment);
+      // var output = [];
+      // for (let i = 0; i < cart.length; i++) {
+      //   output.push(`<p>${cart[i].category} | ${cart[i].name} | ${cart[i].price} x ${cart[i].qty} = Rp. ${cart[i].price * cart[i].qty}</p>`)  
+      // }
+
+      var subTotal = 0;
+      for (let i = 0; i < cart.length; i++) {
+        subTotal += cart[i].qty * cart[i].price
+      }
+      console.log(subTotal);
+      var ppn = subTotal * 0.05;
+      var grandTotal = subTotal + ppn;
+
+      document.getElementById('payment').innerHTML = listPayment.join('') + `<h3>Rp. ${subTotal}</h3> <h4>PPN: ${ppn}</h4> <h3>Grand Total: Rp. ${grandTotal}</h3>`;
+      cart = [];
+      showCart();
+    }
+
 
     showList(arrProduct);
     showCategories();
