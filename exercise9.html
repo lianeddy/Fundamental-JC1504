@@ -177,7 +177,7 @@
     }
 
     function showList(arr, param){
-      var newArr = arr.map((val, i) => {
+      var newArr = arr.map((val, index) => {
         if(i === param){
           return(
             `
@@ -187,7 +187,7 @@
                 <td><input type="text" id="editName"></td>
                 <td><input type="text" id="editPrice"></td>
                 <td><input type="text" id="editStock"></td>
-                <td><button onclick="confirmEdit(${i})">Save</button></td>
+                <td><button onclick="confirmEdit(${index})">Save</button></td>
                 <td><button onclick="cancelEdit()">Cancel</button></td>
               </tr>
             `
@@ -203,8 +203,8 @@
                 <td>${val.price}</td>
                 <td>${val.stock}</td>
                 <td><button onclick="addToCart(${val.id})">Add</button></td>
-                <td><button onclick="deleteData(${i})">Delete</button></td>
-                <td><button onclick="editData(${i})">Edit</button></td>
+                <td><button onclick="deleteData(${index})">Delete</button></td>
+                <td><button onclick="editData(${index})">Edit</button></td>
               </tr>
             `
           )

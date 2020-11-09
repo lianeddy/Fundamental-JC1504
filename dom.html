@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* #container{
+            background-color: brown;
+            border: 5px solid red;
+        } */
+    </style>
+</head>
+<body>
+    <p id="opening">Hello World</p>
+    <p id="content">Ni Hao Shijie</p>
+    <p id="ending">Bonjour Monde</p>
+    <div id="container" class="styleContainer">
+        
+    </div>
+</body>
+<script>
+    // var p = document.getElementById("opening").innerHTML;
+    // console.log(p);
+    // document.getElementById("ending").style.backgroundColor = 'red'
+    // document.getElementById("content").style.fontSize = '40px'
+
+    // document.getElementById("container").innerHTML = "<p id='content1'>Ini mengisi div</p>"
+    // document.getElementById("container").innerHTML += "<p id='content2'>Ini menambahkan div</p>"
+
+    // document.getElementById("content1").style.backgroundColor = 'orange';
+    // document.getElementById("content2").style.fontSize = '40px';
+    // document.getElementById("content2").innerHTML = '<h2>ini menimban konten div</h2>';
+    
+    // document.getElementById("container").innerHTML += `<h3>${arr[0]}</h3>`
+    // document.getElementById("container").innerHTML += `<h3>${arr[1]}</h3>`
+    // document.getElementById("container").innerHTML += `<h3>${arr[2]}</h3>`
+    // var output = arr.map((val) => {
+    //     return `<div><h3>${val}</h3><button onclick="clickButton()">Click Me</button></div>`
+    // })
+    // var output = ""
+    var arr = ["Apel", "Jeruk", "Anggur", "Duren", "Rambutan"];
+    function renderListBuah(){
+        var output = []
+        for (let i = 0; i < arr.length; i++) {
+            // console.log(i, arr[i]);
+            // output += `<h3>${arr[i]}</h3>`
+            output.push(`<h3>${arr[i]}</h3><button onclick="clickButton(${i})">Click Me</button>`)
+        }
+        document.getElementById("container").innerHTML = "<input type='text' id='inputName' placeholder='Input Nama Buah Disini'>"; 
+        document.getElementById("container").innerHTML += output.join(''); 
+        document.getElementById("container").innerHTML += `<h3>ini daftar buah saya</h3>`;
+    }
+
+    function clickButton(index){
+        var inputName = document.getElementById("inputName").value;
+        alert(`Tombol ${arr[index]} dipencet`);
+        arr[index] = inputName;
+        renderListBuah();
+    };
+
+    renderListBuah();
+</script>
+</html>

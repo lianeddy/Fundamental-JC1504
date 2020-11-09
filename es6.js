@@ -234,22 +234,28 @@ var arrProduct = [
 //   console.log("tidak ada");
 // }
 
+// var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// var arrNew = arr.map((val) => {
+//   if (val % 2 === 0) {
+//     return val * 2;
+//   } else {
+//     return val / 2;
+//   }
+// });
+
+// var newArr = [];
+// for (let i = 0; i < array.length; i++) {
+//   if (i === 5) {
+//     newArr.push(arr[i] * 2);
+//   } else {
+//     newArr.push(arr[i] / 2);
+//   }
+// }
+
 var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-var arrNew = arr.map((val) => {
-  if (val % 2 === 0) {
-    return val * 2;
-  } else {
-    return val / 2;
+var newArr = arr.map((val, index) => {
+  if (index === 0) {
+    console.log(val, "di index ke - ", index);
   }
 });
-
-var newArr = [];
-for (let i = 0; i < array.length; i++) {
-  if (arr[i] % 2 === 0) {
-    newArr.push(arr[i] * 2);
-  } else {
-    newArr.push(arr[i] / 2);
-  }
-}
-
-console.log(arrNew);
+console.log(newArr);
