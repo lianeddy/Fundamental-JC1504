@@ -112,34 +112,32 @@
     ];
 
     function addToCart(idProduct){
-      // find
-      // findIndex
-      // parameter === val.id
-
       var productInCart = cart.find((val) => {
         return val.id === idProduct
       });
-
-      // console.log(productInCart, 'apakah ada produk di dalam cart?')
-
-      if(productInCart){
-        // findIndex
-        var cartIndex = cart.findIndex((val) => {
-        return val.id === idProduct
+      var idx = arrProduct.findIndex((val) => {
+      return val.id === idProduct
         });
-        cart[cartIndex].qty++;
+
+      if(arrProduct[idx].stock > 0){
+        if(productInCart){
+          var cartIndex = cart.findIndex((val) => {
+            return val.id === idProduct
+          });
+          cart[cartIndex].qty++;
+        }else{
+          var selectedProduct = arrProduct.find((val) => {
+            return val.id === idProduct
+          });
+          cart.push({...selectedProduct, qty: 1});
+        }
+        arrProduct[idx].stock--
+
+        showList(arrProduct);
+        showCart();
       }else{
-        // console.log('Produk tidak ditemukan di cart');
-        var selectedProduct = arrProduct.find((val) => {
-          return val.id === idProduct
-        });
-        // console.log(selectedProduct, 'produk yang dipilih oleh user');
-        // selectedProduct.qty = 1;
-
-        // Spread Operator
-        cart.push({...selectedProduct, qty: 1});
+        alert('Stock produk kosong');
       }
-      showCart();
     }
 
     function showCart(){
@@ -178,7 +176,7 @@
 
     function showList(arr, param){
       var newArr = arr.map((val, index) => {
-        if(i === param){
+        if(index === param){
           return(
             `
               <tr>

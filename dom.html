@@ -40,23 +40,27 @@
     // })
     // var output = ""
     var arr = ["Apel", "Jeruk", "Anggur", "Duren", "Rambutan"];
-    function renderListBuah(){
+    function renderListBuah(index){
         var output = []
         for (let i = 0; i < arr.length; i++) {
+            if(index === i){
+                output.push(`<input type="text"><br><button onclick="clickButton(${i})">Click Me</button><br>`)
+            }else{
+                output.push(`<h3>${arr[i]}</h3><button onclick="clickButton(${i})">Click Me</button><br>`)
+            }
             // console.log(i, arr[i]);
             // output += `<h3>${arr[i]}</h3>`
-            output.push(`<h3>${arr[i]}</h3><button onclick="clickButton(${i})">Click Me</button>`)
         }
-        document.getElementById("container").innerHTML = "<input type='text' id='inputName' placeholder='Input Nama Buah Disini'>"; 
+        document.getElementById("container").innerHTML = "<input type='text' id='inputName' placeholder='Input Nama Buah Disini'><br><br>"; 
         document.getElementById("container").innerHTML += output.join(''); 
         document.getElementById("container").innerHTML += `<h3>ini daftar buah saya</h3>`;
     }
 
     function clickButton(index){
-        var inputName = document.getElementById("inputName").value;
-        alert(`Tombol ${arr[index]} dipencet`);
-        arr[index] = inputName;
-        renderListBuah();
+        // var inputName = document.getElementById("inputName").value;
+        // alert(`Tombol ${arr[index]} dipencet`);
+        // arr[index] = inputName;
+        renderListBuah(index);
     };
 
     renderListBuah();
