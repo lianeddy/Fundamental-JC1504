@@ -259,3 +259,5 @@ var newArr = arr.map((val, index) => {
   }
 });
 console.log(newArr);
+
+//comment
