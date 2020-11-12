@@ -93,7 +93,7 @@
         showList();
     }
 
-    function showList(){
+    function showList(arr){
         // var output = "";
         // for(var i = 0; i<arrProduct.length; i++){
         //     output += `
@@ -105,7 +105,7 @@
         //         </tr>
         //     `
         // }
-        var output = arrProduct.map(function (val){
+        var output = arr.map(function (val){
             return (
                 `
                     <tr>
@@ -122,7 +122,7 @@
         return document.getElementById("output").innerHTML = output.join('');
     }
 
-    showList();
+    showList(arrProduct);
 
 </script>
 </html>

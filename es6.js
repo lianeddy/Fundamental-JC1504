@@ -144,30 +144,30 @@
 // find
 // findIndex
 
-var arrProduct = [
-  {
-    id: 15945893849,
-    category: "Fast Food",
-    name: "Noodle",
-    price: 5000,
-    stock: 9,
-  },
-  {
-    id: 15945893843,
-    category: "Electronic",
-    name: "Headphone",
-    price: 500000,
-    stock: 10,
-  },
-  {
-    id: 15945893844,
-    category: "Clothing",
-    name: "Hoodie",
-    price: 300000,
-    stock: 7,
-  },
-  { id: 15945893845, category: "Fruit", name: "Apple", price: 10000, stock: 8 },
-];
+// var arrProduct = [
+//   {
+//     id: 15945893849,
+//     category: "Fast Food",
+//     name: "Noodle",
+//     price: 5000,
+//     stock: 9,
+//   },
+//   {
+//     id: 15945893843,
+//     category: "Electronic",
+//     name: "Headphone",
+//     price: 500000,
+//     stock: 10,
+//   },
+//   {
+//     id: 15945893844,
+//     category: "Clothing",
+//     name: "Hoodie",
+//     price: 300000,
+//     stock: 7,
+//   },
+//   { id: 15945893845, category: "Fruit", name: "Apple", price: 10000, stock: 8 },
+// ];
 
 // console.log(
 //   arrProduct.find((val) => {
@@ -252,12 +252,62 @@ var arrProduct = [
 //   }
 // }
 
-var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-var newArr = arr.map((val, index) => {
-  if (index === 0) {
-    console.log(val, "di index ke - ", index);
-  }
-});
-console.log(newArr);
+// var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// var newArr = arr.map((val, index) => {
+//   if (index === 0) {
+//     console.log(val, "di index ke - ", index);
+//   }
+// });
+// console.log(newArr);
 
-//comment
+// Val
+// Map & Filter Looping
+// var arr = [1, 2, 3];
+// var otherArr = [4, 5, 6];
+
+// var newArr = arr.map((val) => val * 2);
+// var newArr = arr.filter((val) => val > 1);
+// console.log(newArr);
+
+// function ret(num) {
+//   if (num > 5) {
+//     return "number diatas 5";
+//     console.log("ini dibawah return string");
+//   }
+//   return false;
+//   return true;
+//   console.log("ini dibawah return false");
+// }
+
+// console.log(ret(1));
+
+// Ternary If
+// one line if else
+// if(condition){
+//   // code here
+// }else{
+//   //code here
+// }
+
+var x = 5;
+var y = 1;
+
+// var contoh = y > x ? true : false;
+// console.log(contoh);
+
+var contoh;
+if (y > x) {
+  contoh = true;
+} else {
+  contoh = false;
+}
+
+// console.log(
+//   y > x ? "angka y lebih besar dari x" : "angka y lebih kecil dari angka x"
+// );
+
+// if (y > x) {
+//   console.log("angka y lebih besar dari x");
+// } else {
+//   console.log("angka y lebih kecil dari angka x");
+// }
