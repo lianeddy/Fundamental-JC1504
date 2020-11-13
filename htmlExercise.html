@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="shapeSelect" placeholder="1-3">
+    <input type="number" id="sizeSelect" placeholder="Select your size">
+    <button onclick="createShape()">
+        Click Me
+    </button>
+    <h1 id="output"></h1>
+</body>
+<script>
+    function createShape(){
+        var shapeType = document.getElementById("shapeSelect").value;
+        var shapeSize = document.getElementById("sizeSelect").value;
+        console.log(typeof shapeType);
+        if(shapeType == 1){
+            return square(shapeSize);
+        }else if(shapeType == 2){
+            triangle(shapeSize);
+        }else if(shapeType == 3){
+            revTriangle(shapeSize);
+        }else if(shapeType == 4){
+            eTriangle(shapeSize);
+        }else if(shapeType == 5){
+            marioTriangle(shapeSize);
+        }
+    }
+
+    function square(num){
+        var output = "";
+        for(var i = 0; i < num ;i++){
+            for(var j = 0 ; j < num ; j++){
+                output += "* "
+            }
+            output += "<br>"
+        }
+        return document.getElementById("output").innerHTML = output;
+    };
+
+    function triangle(num){
+        var output = "";
+        for(var i = 1; i <= num ;i++){
+            for(var j = 0 ; j < i ; j++){
+                output += "* "
+            }
+            output += "<br>"
+        }
+        return document.getElementById("output").innerHTML = output;
+    }
+    function revTriangle(num){
+        var output = "";
+        for(var i = 0; i < num ;i++){
+            for(var j = num ; j > i ; j--){
+                output += "* "
+            }
+            output += "<br>"
+        }
+        return document.getElementById("output").innerHTML = output;
+    }
+
+    function eTriangle(num){
+        var output = "";
+        for(var i = 1; i <= num ;i++){
+            for(var j = num ; j > i ; j--){
+                output += "&nbsp&nbsp&nbsp"
+            }
+            for(var k = 0 ; k < i ; k++){
+                output += "* "
+            }
+            output += "<br>"
+        }
+        return document.getElementById("output").innerHTML = output;
+    }
+
+    function marioTriangle(num){
+        var output = "";
+        for(var i = 1; i <= num ;i++){
+            for(var j = num ; j > i ; j--){
+                output += "&nbsp&nbsp&nbsp"
+            }
+            for(var k = 0 ; k < i ; k++){
+                output += "* "
+            }
+            output += "&nbsp&nbsp&nbsp"
+            for(var k = 0 ; k < i ; k++){
+                output += "* "
+            }
+            output += "<br>"
+        }
+        return document.getElementById("output").innerHTML = output;
+    }
+
+</script>
+</html>

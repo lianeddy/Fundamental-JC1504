@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, tr, th, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div>
+            <input type="text" name="username" id="username" placeholder="Username">
+            <input type="password" name="password" id="password" placeholder="Password">
+            <button onclick="login()">
+                Log In
+            </button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div id="tableContainer" style="display: none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Activity</th>
+                        <th>Day</th>
+                        <th>Image</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tableContent">
+
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h4 id="output"></h4>
+        </div>
+    </center>
+</body>
+<script>
+
+    class Activity{
+        constructor(nama,hari,image){
+            this.nama = nama, 
+            this.hari = hari,
+            this.image = image
+        }
+    }
+
+    let data = [
+        new Activity('Lari','Senin','https://static.duniaku.net/2019/06/D9VoZlrVAAAJqp3.jpg'),
+        new Activity('Estafet','Selasa','https://static.duniaku.net/2019/06/D9VoZlrVAAAJqp3.jpg'),
+        new Activity('Basket','Rabu','https://static.duniaku.net/2019/06/D9VoZlrVAAAJqp3.jpg'),
+        new Activity('Tinju','Kamis','https://static.duniaku.net/2019/06/D9VoZlrVAAAJqp3.jpg'),
+    ]
+
+    let logged;
+
+    let users = [
+        { username: 'lian', password: 'abc', role: 'user' },
+        { username: 'bambang', password: '123', role: 'admin' },
+    ]
+
+    function login(){
+        let username = document.getElementById("username").value; //"lian"
+        let password = document.getElementById("password").value; // "abc"
+
+        // for(var i = 0; i<users.length; i++){
+        //     if(username === users[i].username && password === users[i].password){
+        //         return document.getElementById("output").innerHTML = `Login sebagai: ${users[i].username}`;
+        //     }
+        // }
+        // return document.getElementById("output").innerHTML = `User tidak ditemukan`;
+
+        logged = users.find((val) => {
+            return val.username === username && val.password === password
+        });
+        console.log(logged);
+        if(logged){
+            // document.getElementById("tableContainer").style.display = "block";
+            // showList();
+            // console.log(logged)
+            return document.getElementById("output").innerHTML = `Login sebagai: ${logged.username} : ${logged.role}`
+        }else{
+            // document.getElementById("tableContainer").style.display = "none";
+            return document.getElementById("output").innerHTML = `User tidak ditemukan`
+        }
+    }
+
+    function showList(){
+        let newArr;
+        newArr = data.map((val, index) => {
+            return(
+                `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${val.nama}</td>
+                    <td>${val.hari}</td>
+                    <td><img src="${val.image}" alt="image${index}" height="200px" width="120px"></td>
+                    ${logged.role === 'admin' ? "<td><button>Edit</button></td><td><button>Delete</button></td>" : "<td></td>"}
+                </tr>
+                `
+            )
+        });
+        let addTd = `
+            <tr>
+                <td></td>
+                <td><input type="text"></td>
+                <td>
+                    <select>
+                        <option>Senin</option>
+                        <option>Selasa</option>
+                        <option>Rabu</option>
+                        <option>Kamis</option>
+                        <option>Jumat</option>
+                        <option>Sabtu</option>
+                        <option>Minggu</option>
+                    </select>
+                </td>
+                <td><input type="text"></td>
+                <td colspan="2"><button>Add</button></td>
+            </tr>`
+        return document.getElementById("tableContent").innerHTML = newArr.join("") + (logged.role === 'admin' ? addTd : "");
+    }
+</script>
+</html>

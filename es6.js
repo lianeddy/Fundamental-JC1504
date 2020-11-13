@@ -311,3 +311,12 @@ if (y > x) {
 // } else {
 //   console.log("angka y lebih kecil dari angka x");
 // }
+
+var nama = "lian";
+var nama2 = `lian`;
+
+// var intro = "nama saya " + nama + " eddy";
+var intro = `nama saya ${nama} eddy`;
+var intro = `nama saya nama eddy`;
+
+console.log(intro);
