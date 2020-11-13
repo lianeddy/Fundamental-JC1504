@@ -31,7 +31,7 @@
                         <th>Activity</th>
                         <th>Day</th>
                         <th>Image</th>
-                        <th colspan="2">Action</th>
+                        <th colspan="2" id="actionTh">Action</th>
                     </tr>
                 </thead>
                 <tbody id="tableContent">
@@ -56,9 +56,9 @@
 
     let data = [
         new Activity('Lari','Senin','https://static.duniaku.net/2019/06/D9VoZlrVAAAJqp3.jpg'),
-        new Activity('Estafet','Selasa','https://static.duniaku.net/2019/06/D9VoZlrVAAAJqp3.jpg'),
-        new Activity('Basket','Rabu','https://static.duniaku.net/2019/06/D9VoZlrVAAAJqp3.jpg'),
-        new Activity('Tinju','Kamis','https://static.duniaku.net/2019/06/D9VoZlrVAAAJqp3.jpg'),
+        new Activity('Estafet','Selasa','https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-07ECHstGxyk%2FT-dWKhQ-uCI%2FAAAAAAAAB2U%2FciVfMgHKdUo%2Fs1600%2FCat%2Bsleeping%2Bon%2Bguitar.jpg&f=1&nofb=1'),
+        new Activity('Basket','Rabu','https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F_Cc3gulUhlvs%2FTOsoFb7qtAI%2FAAAAAAAACr0%2FDkQKKvMpbUU%2Fs1600%2Fgambar-binatang.jpg&f=1&nofb=1'),
+        new Activity('Tinju','Kamis','https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F4.bp.blogspot.com%2F-mOOAG-Irdxg%2FUMq6P7qvJ3I%2FAAAAAAAAGQg%2F5oY1UfrdnZ8%2Fs1600%2Fgambar%2Bayam%2Bkate%2B%2B9.JPG&f=1&nofb=1'),
     ]
 
     let logged;
@@ -84,12 +84,11 @@
         });
         console.log(logged);
         if(logged){
-            // document.getElementById("tableContainer").style.display = "block";
-            // showList();
-            // console.log(logged)
+            document.getElementById("tableContainer").style.display = "inline";
+            showList();
             return document.getElementById("output").innerHTML = `Login sebagai: ${logged.username} : ${logged.role}`
         }else{
-            // document.getElementById("tableContainer").style.display = "none";
+            document.getElementById("tableContainer").style.display = "none";
             return document.getElementById("output").innerHTML = `User tidak ditemukan`
         }
     }
@@ -103,7 +102,7 @@
                     <td>${index + 1}</td>
                     <td>${val.nama}</td>
                     <td>${val.hari}</td>
-                    <td><img src="${val.image}" alt="image${index}" height="200px" width="120px"></td>
+                    <td><img src="${val.image}" alt="image${index}" height="200px" width="400px"></td>
                     ${logged.role === 'admin' ? "<td><button>Edit</button></td><td><button>Delete</button></td>" : "<td></td>"}
                 </tr>
                 `
@@ -112,7 +111,7 @@
         let addTd = `
             <tr>
                 <td></td>
-                <td><input type="text"></td>
+                <td><input type="text" placeholder="Nama aktifitas"></td>
                 <td>
                     <select>
                         <option>Senin</option>
@@ -124,10 +123,14 @@
                         <option>Minggu</option>
                     </select>
                 </td>
-                <td><input type="text"></td>
+                <td><input type="text" placeholder="URL gambar"></td>
                 <td colspan="2"><button>Add</button></td>
             </tr>`
-        return document.getElementById("tableContent").innerHTML = newArr.join("") + (logged.role === 'admin' ? addTd : "");
+        if(logged.role === "admin"){
+            return document.getElementById("tableContent").innerHTML = newArr.join("") + addTd;
+        }else{
+            return document.getElementById("tableContent").innerHTML = newArr.join("");
+        }
     }
 </script>
 </html>

@@ -289,18 +289,18 @@
 //   //code here
 // }
 
-var x = 5;
-var y = 1;
+// var x = 5;
+// var y = 1;
 
 // var contoh = y > x ? true : false;
 // console.log(contoh);
 
-var contoh;
-if (y > x) {
-  contoh = true;
-} else {
-  contoh = false;
-}
+// var contoh;
+// if (y > x) {
+//   contoh = true;
+// } else {
+//   contoh = false;
+// }
 
 // console.log(
 //   y > x ? "angka y lebih besar dari x" : "angka y lebih kecil dari angka x"
@@ -312,11 +312,45 @@ if (y > x) {
 //   console.log("angka y lebih kecil dari angka x");
 // }
 
-var nama = "lian";
-var nama2 = `lian`;
+// var nama = "lian";
+// var nama2 = `lian`;
 
 // var intro = "nama saya " + nama + " eddy";
-var intro = `nama saya ${nama} eddy`;
-var intro = `nama saya nama eddy`;
+// var intro = `nama saya ${nama} eddy`;
+// var intro = `nama saya nama eddy`;
+
+// console.log(intro);
+
+// var nama = "lian";
+
+// function intro() {
+//   var contoh = true;
+//   console.log(contoh);
+//   return nama;
+// }
+// console.log(intro());
+
+// console.log(nama);
+
+// console.log(nama);
+
+// var arr = [1, 2, nama];
+// var obj = {
+//   nama,
+// };
+// console.log(arr);
+// console.log(obj);
+
+var nama1 = "lian";
+var nama2 = "bambang";
+
+var output;
+if (nama1.length > nama2.length) {
+  output = nama1;
+} else {
+  output = nama2;
+}
+
+var intro = `nama yang lebih panjang adalah ${output}`;
 
 console.log(intro);
