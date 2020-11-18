@@ -17,10 +17,10 @@
             padding: 10px;
         }
 
-        form {
+        /* form {
             width: 50%;
             margin: 0 auto;
-        }
+        } */
     </style>
 </head>
 
@@ -43,7 +43,7 @@
               <td><select name="category" id="categoryInput"></select></td>
               <td><input type="text" name="nama" id="stockInput" placeholder="Stock"></td>
           </table>
-          <p><input type="button" value="Input" onclick="addToList()"></p>
+          <p><input type="button" value="Input" onclick="addToList()" defa></p>
       </fieldset>
 
       <!-- RENDER -->
@@ -56,7 +56,8 @@
                   <th>Nama</th>
                   <th>Price</th>
                   <th>Stock</th>
-                  <th colspan="3">Action</th>
+                  <th>Buy</th>
+                  <th colspan="2">Action</th>
               </thead>
               <tbody id="render">
                   
@@ -150,7 +151,7 @@
               <td>${val.name}</td>
               <td>${val.price}</td>
               <td>${val.qty}</td>
-              <td><button onclick="deleteCart(${index})">Delete</button></td>
+              <td><button onclick="deleteCart(${val.id}, '${index}')">Delete</button></td>
             </tr>
           `
         )
@@ -158,9 +159,23 @@
       return document.getElementById("renderCart").innerHTML = newArr.join('');
     }
 
-    function deleteCart(index){
-      console.log(index)
-      cart.splice(index, 1);
+    function deleteCart(idProduct, index){
+      var productInCart = cart.find((val) => {
+        return val.id === idProduct
+      })
+      var idx = arrProduct.findIndex((val) => {
+        return val.id === idProduct
+      })
+      console.log(productInCart.qty, "qty di cart");
+      console.log(idx, "index di arrproduct");
+      arrProduct[idx].stock += productInCart.qty;
+      showList(arrProduct);
+
+      cart = cart.filter((val) => val.id !== idProduct);
+
+      // index = parseInt(index);
+      // console.log(index)
+      // cart.splice(index, 1);
       showCart();
     }
 
@@ -182,9 +197,10 @@
               <tr>
                 <td>${val.id}</td>
                 <td>${val.category}</td>
-                <td><input type="text" id="editName"></td>
-                <td><input type="text" id="editPrice"></td>
-                <td><input type="text" id="editStock"></td>
+                <td><input type="text" id="editName" value="${val.name}"></td>
+                <td><input type="text" id="editPrice" value="${val.price}"></td>
+                <td><input type="number" id="editStock" value="${val.stock}"></td>
+                <td><button disabled>Buy</button></td>
                 <td><button onclick="confirmEdit(${index})">Save</button></td>
                 <td><button onclick="cancelEdit()">Cancel</button></td>
               </tr>
@@ -201,7 +217,7 @@
                 <td>${val.price}</td>
                 <td>${val.stock}</td>
                 <td><button onclick="addToCart(${val.id})">Add</button></td>
-                <td><button onclick="deleteData(${index})">Delete</button></td>
+                <td><button onclick="deleteData(${val.id})">Delete</button></td>
                 <td><button onclick="editData(${index})">Edit</button></td>
               </tr>
             `
@@ -224,7 +240,7 @@
       var newName, newPrice, newStock;
       newName = document.getElementById('editName').value;
       newPrice = document.getElementById('editPrice').value;
-      newStock = document.getElementById('editStock').value;
+      newStock = parseInt(document.getElementById('editStock').value);
 
       arrProduct[index].name = newName;
       arrProduct[index].price = newPrice;
